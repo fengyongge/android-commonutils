@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <LinearLayout
+        android:id="@+id/llTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <RelativeLayout
+                android:id="@+id/rlLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:id="@+id/tvLeft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:drawableLeft="@drawable/back_arrow"
+                    />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvTopText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:maxEms="10"
+                android:singleLine="true"
+                android:textSize="20sp"
+                android:text="标题"
+                />
+
+            <RelativeLayout
+                android:id="@+id/rlRight"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center">
+
+
+                <TextView
+                    android:id="@+id/tvRight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    />
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/title_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#EBEBEB" />
+
+</LinearLayout>

@@ -1,0 +1,91 @@
+apply plugin: 'com.android.application'
+
+
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.1"
+    defaultConfig {
+        applicationId "com.zzti.fengyongge.androiddevtool"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    dexOptions {
+        preDexLibraries = false
+        incremental true
+        //开启incremental dexing,优化编译效率，这个功能android studio默认是关闭的。
+        javaMaxHeapSize "4g"     //增加java堆内存大小
+    }
+
+
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                //这里修改apk文件名
+                def fileName = "androiddevtool-${defaultConfig.versionCode}-${defaultConfig.versionName}-${releaseTime()}.apk"
+                output.outputFile = new File(outputFile.parent, fileName)
+            }
+        }
+    }
+
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
+    testCompile 'junit:junit:4.12'
+
+
+    compile 'com.squareup.okhttp:okhttp:2.7.5'
+    compile 'com.squareup.okio:okio:1.9.0'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+
+
+    compile 'com.alibaba:fastjson:1.1.55.android'
+    compile 'com.orhanobut:logger:1.15'
+    compile 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'top.zibin:Luban:1.0.9'
+
+
+
+}
+
