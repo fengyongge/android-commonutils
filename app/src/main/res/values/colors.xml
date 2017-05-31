@@ -4,8 +4,12 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-
-
+    <color name="theme_color">#1e51b6</color>
+    <color name="tab_color">#777777</color>
+    <color name="white">#ffffff</color>
+    <color name="red">#E83F52</color>
+    <color name="view_color">#EBEBEB</color>
+    <color name="bottom_color">#F5F5F5</color>
 
 
 

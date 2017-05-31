@@ -47,7 +47,7 @@
                 android:maxEms="10"
                 android:singleLine="true"
                 android:textSize="20sp"
-                android:text="标题"
+                tools:text="标题"
                 />
 
             <RelativeLayout
