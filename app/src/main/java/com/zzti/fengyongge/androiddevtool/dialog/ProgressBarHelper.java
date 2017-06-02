@@ -10,11 +10,13 @@ import com.zzti.fengyongge.androiddevtool.R;
 
 public class ProgressBarHelper {
 
+    /**
+     * @author fengyongge
+     * @Description 自定义进度条
+     */
 	public static Dialog createWindowsBar(Activity ctx) {
-
         Dialog dialog = new Dialog(ctx, R.style.DialogStyle);
         dialog.setContentView(R.layout.popup_window);
-
         Window window = dialog.getWindow();
         WindowManager.LayoutParams params = window.getAttributes();
         params.dimAmount = 0f;
@@ -24,7 +26,5 @@ public class ProgressBarHelper {
         dialog.setCanceledOnTouchOutside(false);
         return dialog;
 	}
-	
-	
 
 }

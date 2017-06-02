@@ -10,7 +10,7 @@
     <color name="red">#E83F52</color>
     <color name="view_color">#EBEBEB</color>
     <color name="bottom_color">#F5F5F5</color>
-
+    <color name="alertdialog_line">#c6c6c6</color>
 
 
 </resources>
