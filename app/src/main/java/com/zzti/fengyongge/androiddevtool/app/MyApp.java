@@ -8,6 +8,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
+import com.zzti.fengyongge.androiddevtool.utils.LogUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +30,9 @@ public class MyApp extends Application {
 
         instance = (MyApp) getApplicationContext();
 
-        Logger.init("fyg").logLevel(LogLevel.FULL);//debug
+        //初始化
+        LogUtils.init(true);
+
 
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
 //				.showImageOnFail(R.drawable.test)
