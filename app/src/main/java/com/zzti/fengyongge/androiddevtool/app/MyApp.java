@@ -19,8 +19,6 @@ import java.util.List;
  */
 public class MyApp extends Application {
 
-    private static MyApp instance;
-    private SharedPreferences sp;
     private static List<Activity> con_list = new ArrayList<Activity>();
 
     @Override
@@ -28,10 +26,9 @@ public class MyApp extends Application {
         // TODO Auto-generated method stub
         super.onCreate();
 
-        instance = (MyApp) getApplicationContext();
-
         //初始化
-        LogUtils.init(true);
+        LogUtils.init(AppConfig.DEBUG);
+
 
 
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()

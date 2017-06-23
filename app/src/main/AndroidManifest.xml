@@ -22,6 +22,7 @@
         <activity android:name=".ui.BroadcastSampleActivity" />
         <activity android:name=".ui.RefreshActivity" />
         <activity android:name=".ui.BaseActivity"></activity>
+        <activity android:name=".ui.QueryActivity"></activity>
     </application>
 
 </manifest>

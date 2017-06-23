@@ -19,7 +19,8 @@ import com.zzti.fengyongge.androiddevtool.adapter.ViewHolder;
 import com.zzti.fengyongge.androiddevtool.bean.TestBean;
 import com.zzti.fengyongge.androiddevtool.dialog.ProgressBarHelper;
 import com.zzti.fengyongge.androiddevtool.myinterface.ApiCallback;
-import com.zzti.fengyongge.androiddevtool.net.MyNet;
+import com.zzti.fengyongge.androiddevtool.net.NetUtils;
+import com.zzti.fengyongge.androiddevtool.net.api.Api;
 import com.zzti.fengyongge.androiddevtool.utils.ToastUtils;
 import com.zzti.fengyongge.androiddevtool.view.RefreshLayout;
 import java.util.ArrayList;
@@ -79,7 +80,7 @@ public class RefreshActivity extends Activity implements SwipeRefreshLayout.OnRe
 
         windowsBar = ProgressBarHelper.createWindowsBar(RefreshActivity.this);
         
-        MyNet.Inst(RefreshActivity.this).meetingASssistant(pageIndex, new ApiCallback() {
+        Api.Inst(RefreshActivity.this).meetingASssistant(pageIndex, new ApiCallback() {
                     @Override
                     public void onDataSuccess(JSONObject data) {
 

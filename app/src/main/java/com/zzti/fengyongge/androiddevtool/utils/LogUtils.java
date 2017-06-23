@@ -4,7 +4,8 @@ import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 
 /**
- * Created by fengyongge
+ * @author fengyongge
+ * @Description  Preferences
  */
 public class LogUtils {
 

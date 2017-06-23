@@ -1,7 +1,6 @@
 package com.zzti.fengyongge.androiddevtool.fragment;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,11 +15,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.zzti.fengyongge.androiddevtool.R;
 import com.zzti.fengyongge.androiddevtool.app.MyApp;
 import com.zzti.fengyongge.androiddevtool.myinterface.ApiCallback;
-import com.zzti.fengyongge.androiddevtool.net.MyNet;
+import com.zzti.fengyongge.androiddevtool.net.NetUtils;
+import com.zzti.fengyongge.androiddevtool.net.api.Api;
 import com.zzti.fengyongge.androiddevtool.utils.AppUpdateUtils;
 import com.zzti.fengyongge.androiddevtool.utils.AppUtils;
 import com.zzti.fengyongge.androiddevtool.utils.PreferencesUtils;
-import com.zzti.fengyongge.androiddevtool.utils.StringUtils;
 import com.zzti.fengyongge.androiddevtool.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -85,7 +84,7 @@ public class AdminMainFragment extends Fragment {
 
     public void update() {
 
-        MyNet.Inst(getActivity()).update(new ApiCallback() {
+        Api.Inst(getActivity()).update(new ApiCallback() {
             @Override
             public void onDataSuccess(JSONObject data) {
 
