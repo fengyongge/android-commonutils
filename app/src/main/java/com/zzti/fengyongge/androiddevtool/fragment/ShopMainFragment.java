@@ -77,8 +77,6 @@ public class ShopMainFragment extends Fragment {
                     @Override
                     public void onDataSuccess(JSONObject data) {
 
-                        LogUtils.i("data："+data);
-
                         LoginBean loginBean = JSON.parseObject(data.getString("data"), LoginBean.class);
 
 

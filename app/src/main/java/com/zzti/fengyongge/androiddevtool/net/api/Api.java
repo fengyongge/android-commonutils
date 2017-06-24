@@ -8,6 +8,7 @@ import com.zzti.fengyongge.androiddevtool.encrypt.EncryptionRule;
 import com.zzti.fengyongge.androiddevtool.myinterface.ApiCallback;
 import com.zzti.fengyongge.androiddevtool.net.NetUtils;
 import com.zzti.fengyongge.androiddevtool.utils.PreferencesUtils;
+import com.zzti.fengyongge.androiddevtool.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,12 @@ public class Api {
         cxt = context;
         staff_id= PreferencesUtils.getString(cxt,"");
         supplier_id= PreferencesUtils.getString(cxt,"");
-        return mInstance;
+
+//        if(NetUtils.isNetworkAvailable(context)){
+//            ToastUtils.showToast(context,"网络异常");
+//        }
+
+         return mInstance;
     }
 
 

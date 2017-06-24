@@ -64,7 +64,7 @@ public class QueryActivity extends AppCompatActivity {
 
 
     public void loadMore() {
-        windowsBar = ProgressBarHelper.createWindowsBar(QueryActivity.this);
+//        windowsBar = ProgressBarHelper.createWindowsBar(QueryActivity.this);
 
 
         Api.Inst(QueryActivity.this).getLabels(new ApiCallback() {

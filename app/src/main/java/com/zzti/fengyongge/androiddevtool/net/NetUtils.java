@@ -1,9 +1,11 @@
 package com.zzti.fengyongge.androiddevtool.net;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.Looper;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.orhanobut.logger.Logger;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.FormEncodingBuilder;
@@ -31,7 +33,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
 import okhttp3.MultipartBody;
 
 
@@ -59,6 +60,9 @@ public class NetUtils {
         //cookie enabled
         mOkHttpClient.setCookieHandler(new CookieManager(null, CookiePolicy.ACCEPT_ORIGINAL_SERVER));
         mDelivery = new Handler(Looper.getMainLooper());
+
+
+
         return mInstance;
     }
 
@@ -77,6 +81,7 @@ public class NetUtils {
         final Request request = new Request.Builder()
                 .url(url)
                 .build();
+        LogUtils.i("请求的url："+url);
         deliveryResult(callback, request);
     }
 
@@ -89,6 +94,7 @@ public class NetUtils {
      */
     public static void _postAsyn(String url, final ApiCallback callback, List<Param> params) {
         Request request = buildPostRequest(url, params);
+        LogUtils.i("请求的url："+url);
         deliveryResult(callback, request);
     }
 
@@ -685,6 +691,7 @@ public class NetUtils {
             s2 = parameterString.substring(1,parameterString.length());
             s2+= "&sign="+ sign +"&publicKey="+ AppConfig.PUBLICKEY;
         }
+        LogUtils.i("请求参数："+s2);
         return s2;
     }
 
@@ -703,15 +710,42 @@ public class NetUtils {
             Map.Entry<String, String> entry = it.next();
             params.add(new NetUtils.Param(entry.getKey(),entry.getValue()!= null && entry.getValue().length()
                     > 0 ? entry.getValue() : ""));
-
         }
         params.add(new NetUtils.Param("sign", sign));
         params.add(new NetUtils.Param("publicKey", AppConfig.PUBLICKEY));
+
+        StringBuilder buffer = new StringBuilder();
+        for (int i = 0; i < params.size(); i++) {
+            buffer.append("&").append(params.get(i).key).append("=").append(
+                    params.get(i).value!= null && params.get(i).value.length()
+                            > 0 ? params.get(i).value : "");
+        }
+        LogUtils.i("请求参数："+buffer.toString());
+
         return params;
     }
-    
-    
-    
+
+
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (cm == null) {
+        } else {
+            //如果仅仅是用来判断网络连接
+            //则可以使用 cm.getActiveNetworkInfo().isAvailable();
+            NetworkInfo[] info = cm.getAllNetworkInfo();
+            if (info != null) {
+                for (int i = 0; i < info.length; i++) {
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+
 
 
 }

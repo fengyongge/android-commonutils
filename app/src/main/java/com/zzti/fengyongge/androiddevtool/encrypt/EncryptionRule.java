@@ -22,9 +22,9 @@ public class EncryptionRule {
             StringBuffer sb = new StringBuffer();
             s += sb.append(key + map.get(key));
         }
+
         String content = s + token;
         content = toMD5(content);
-
         LogUtils.i("签名之前："+(s + token)+"\n签名后："+content);
         return content;
     }
