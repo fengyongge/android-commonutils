@@ -10,18 +10,6 @@ import java.util.List;
 public class TagsBean {
 
 
-    List<TagBean> list = new ArrayList<>();
-
-
-    public List<TagBean> getList() {
-        return list;
-    }
-
-    public void setList(List<TagBean> list) {
-        this.list = list;
-    }
-
-    public class TagBean{
 
         private String number;
 
@@ -133,7 +121,6 @@ public class TagsBean {
         public void setIs_delete(String is_delete) {
             this.is_delete = is_delete;
         }
-    }
 
 
 

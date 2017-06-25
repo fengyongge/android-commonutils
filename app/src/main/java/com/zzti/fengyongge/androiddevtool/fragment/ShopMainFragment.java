@@ -1,6 +1,7 @@
 package com.zzti.fengyongge.androiddevtool.fragment;
 
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,12 +17,14 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.orhanobut.logger.Logger;
 import com.zzti.fengyongge.androiddevtool.R;
 import com.zzti.fengyongge.androiddevtool.bean.LoginBean;
+import com.zzti.fengyongge.androiddevtool.dialog.ProgressBarHelper;
 import com.zzti.fengyongge.androiddevtool.myinterface.ApiCallback;
 import com.zzti.fengyongge.androiddevtool.net.api.Api;
 import com.zzti.fengyongge.androiddevtool.ui.QueryActivity;
 import com.zzti.fengyongge.androiddevtool.utils.LogUtils;
 import com.zzti.fengyongge.androiddevtool.utils.PreferencesUtils;
 import com.zzti.fengyongge.androiddevtool.utils.StringUtils;
+import com.zzti.fengyongge.androiddevtool.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +34,9 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class ShopMainFragment extends Fragment {
+
+
+    Dialog windowsBar;
 
     View view;
     @BindView(R.id.ivPhoto)
@@ -73,26 +79,42 @@ public class ShopMainFragment extends Fragment {
                 break;
             case R.id.tvLogin:
 
+                windowsBar = ProgressBarHelper.createWindowsBar(getActivity());
+
                 Api.Inst(getActivity()).Login("13661390463", "123456", new ApiCallback() {
                     @Override
                     public void onDataSuccess(JSONObject data) {
+
+                        if(windowsBar!=null&&windowsBar.isShowing()){
+                            windowsBar.dismiss();
+                        }
 
                         LoginBean loginBean = JSON.parseObject(data.getString("data"), LoginBean.class);
 
 
                         PreferencesUtils.putString(getActivity(), "staff_id", loginBean.getId());
-                        PreferencesUtils.putString(getActivity(), "supply_id", loginBean.getSupplier_id());
+                        PreferencesUtils.putString(getActivity(), "supplier_id", loginBean.getSupplier_id());
+
+
                         StringUtils.filtNull(tvName,loginBean.getUsername());
                         ImageLoader.getInstance().displayImage(loginBean.getStaff_image(),ivPhoto);
                     }
 
                     @Override
                     public void onDataError(JSONObject data) {
+                        if(windowsBar!=null&&windowsBar.isShowing()){
+                            windowsBar.dismiss();
+                        }
+                        ToastUtils.showToast(getActivity(),data.getString("msg"));
 
                     }
 
                     @Override
                     public void onNetError(String data) {
+                        if(windowsBar!=null&&windowsBar.isShowing()){
+                            windowsBar.dismiss();
+                        }
+                        ToastUtils.showToast(getActivity(),data);
 
                     }
                 });

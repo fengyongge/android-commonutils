@@ -3,6 +3,7 @@ package com.zzti.fengyongge.androiddevtool.ui;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -10,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.orhanobut.logger.Logger;
 import com.zzti.fengyongge.androiddevtool.R;
 import com.zzti.fengyongge.androiddevtool.adapter.BaseCommAdapter;
 import com.zzti.fengyongge.androiddevtool.adapter.ViewHolder;
@@ -32,7 +34,7 @@ import butterknife.ButterKnife;
  * @author fengyonggge
  * @date 2017/5/23
  */
-public class QueryActivity extends AppCompatActivity {
+public class QueryActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, RefreshLayout.OnLoadListener {
 
     @BindView(R.id.lv)
     ListView lv;
@@ -49,8 +51,8 @@ public class QueryActivity extends AppCompatActivity {
     private boolean isClear = false;
     private int totalResult;
 
-    private List<TagsBean.TagBean> labels_listTemp = new ArrayList();
-    private List<TagsBean.TagBean> labels_list = new ArrayList();
+    private List<TagsBean> labels_listTemp = new ArrayList();
+    private List<TagsBean> labels_list = new ArrayList();
     Adapter adapter;
 
     @Override
@@ -81,8 +83,8 @@ public class QueryActivity extends AppCompatActivity {
 
                 totalResult = Integer.parseInt(data.getJSONObject("data")
                         .getString("total"));
-                labels_listTemp.addAll(JSON.parseArray(data.getJSONObject("data")
-                        .getString("list"), TagsBean.TagBean.class));
+                labels_list.addAll(JSON.parseArray(data.getJSONObject("data")
+                        .getString("list"), TagsBean.class));
 
 //                for (int i = 0; i <labels_listTemp.size() ; i++) {
 //                    if(labels_listTemp.get(i).getMark().equals("1")){
@@ -90,8 +92,9 @@ public class QueryActivity extends AppCompatActivity {
 //                    }
 //                }
 
-                if(labels_listTemp.size()>0){
+                if(labels_list.size()>0){
                      adapter = new Adapter(labels_listTemp);
+                    lv.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }
 
@@ -142,14 +145,45 @@ public class QueryActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onLoad() {
 
-    public class Adapter extends BaseCommAdapter<TagsBean.TagBean> {
+        if (noMoreData == true) {
+                ToastUtils.showToast(QueryActivity.this, "没有更多");
+            rlSwipe.setLoading(false);
+        } else {
+            isRefresh = false;
+            isLoading = true;
+//            progressBar.setVisibility(View.VISIBLE);
+            loadMore();
+        }
+    }
+
+    @Override
+    public void onRefresh() {
+        isRefresh = true;
+        refreshgoods();
+    }
+
+
+    private void refreshgoods() {
+        windowsBar = ProgressBarHelper.createWindowsBar(this);
+        totalResult = 0;
+        pageIndex = 1;
+        pageNumber = 20;
+        isLoading = false;
+        noMoreData = false;
+        loadMore();
+    }
+
+
+    public class Adapter extends BaseCommAdapter<TagsBean> {
 
 
         @BindView(R.id.tvTagName)
         TextView tvTagName;
 
-        public Adapter(List<TagsBean.TagBean> datas) {
+        public Adapter(List<TagsBean> datas) {
             super(datas);
         }
 
@@ -157,7 +191,9 @@ public class QueryActivity extends AppCompatActivity {
         protected void setUI(ViewHolder holder, final int position, Context context) {
             ButterKnife.bind(this, holder.getConverView());
 
-//            tvTagName.setText(labels_listTemp.get(position).get() == null ? "null" : list.get(position).getName());
+            tvTagName.setText( labels_list.get(position).getName());
+
+            Logger.i("--"+labels_list.get(position).getName());
 
 
             //修改
@@ -168,6 +204,35 @@ public class QueryActivity extends AppCompatActivity {
                     AlertHelper.create2EditAlert(QueryActivity.this, "确定", "取消", "是否修改", new SweetAlertCallBack() {
                         @Override
                         public void onConfirm(final String data) {
+
+                            Api.Inst( QueryActivity.this).updateMemberTag(data, labels_list.get(position).getId(), new ApiCallback() {
+                                @Override
+                                public void onDataSuccess(JSONObject data) {
+                                    if (windowsBar != null && windowsBar.isShowing()) {
+                                        windowsBar.dismiss();
+                                    }
+
+
+                                }
+
+                                @Override
+                                public void onDataError(JSONObject data) {
+                                    if (windowsBar != null && windowsBar.isShowing()) {
+                                        windowsBar.dismiss();
+                                    }
+                                    ToastUtils.showToast(QueryActivity.this,data.getString("msg"));
+
+                                }
+
+                                @Override
+                                public void onNetError(String data) {
+                                    if (windowsBar != null && windowsBar.isShowing()) {
+                                        windowsBar.dismiss();
+                                    }
+                                    ToastUtils.showToast(QueryActivity.this,data);
+
+                                }
+                            });
 
 
                         }
@@ -192,6 +257,34 @@ public class QueryActivity extends AppCompatActivity {
                         public void onConfirm() {
 
                             windowsBar = ProgressBarHelper.createWindowsBar(QueryActivity.this);
+
+                            Api.Inst( QueryActivity.this).deleteTag(labels_list.get(position).getId(), new ApiCallback() {
+                                @Override
+                                public void onDataSuccess(JSONObject data) {
+                                    if (windowsBar != null && windowsBar.isShowing()) {
+                                        windowsBar.dismiss();
+                                    }
+                                }
+
+                                @Override
+                                public void onDataError(JSONObject data) {
+                                    if (windowsBar != null && windowsBar.isShowing()) {
+                                        windowsBar.dismiss();
+                                    }
+                                    ToastUtils.showToast(QueryActivity.this,data.getString("msg"));
+
+                                }
+
+                                @Override
+                                public void onNetError(String data) {
+                                    if (windowsBar != null && windowsBar.isShowing()) {
+                                        windowsBar.dismiss();
+                                    }
+                                    ToastUtils.showToast(QueryActivity.this, data);
+                                }
+
+
+                        });
 
 
                         }

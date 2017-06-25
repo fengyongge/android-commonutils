@@ -10,10 +10,15 @@ import com.zzti.fengyongge.androiddevtool.net.NetUtils;
 import com.zzti.fengyongge.androiddevtool.utils.PreferencesUtils;
 import com.zzti.fengyongge.androiddevtool.utils.ToastUtils;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
+import static com.zzti.fengyongge.androiddevtool.encrypt.EncryptionRule.toMD5;
+import static com.zzti.fengyongge.androiddevtool.net.NetUtils.getParameter;
 
 /**
  * Created by fengyongge on 2017/5/23.
@@ -39,8 +44,8 @@ public class Api {
         }
 
         cxt = context;
-        staff_id= PreferencesUtils.getString(cxt,"");
-        supplier_id= PreferencesUtils.getString(cxt,"");
+        staff_id= PreferencesUtils.getString(cxt,"staff_id");
+        supplier_id= PreferencesUtils.getString(cxt,"supplier_id");
 
 //        if(NetUtils.isNetworkAvailable(context)){
 //            ToastUtils.showToast(context,"网络异常");
@@ -67,7 +72,7 @@ public class Api {
         String method = "staffservice/login";
         final String apiUri = AppConfig.BASE_URL +  method;
         List<NetUtils.Param> params = new ArrayList<NetUtils.Param>();
-        params =NetUtils. getParameter(map,sign);
+        params = getParameter(map,sign);
 
         NetUtils.getInstance()._postAsyn(apiUri, callback, params);
 
@@ -98,12 +103,12 @@ public class Api {
         map.put("operator_id", staff_id);
         map.put("tagids", tag_id);
         String sign = EncryptionRule.encryption(AppConfig.APPSECRET, map);
-
+        List<NetUtils.Param> params = new ArrayList<NetUtils.Param>();
+        params = getParameter(map,sign);
 
         String method = "memberservice/delMemberTag/suppliers/" + supplier_id + "/operator/" + staff_id;
         final String apiUri = AppConfig.BASE_URL + method;
-        List<NetUtils.Param> params = new ArrayList<NetUtils.Param>();
-        params =NetUtils. getParameter(map,sign);
+
         NetUtils.getInstance()._deleteAsyn(apiUri, callback, params);
     }
 
@@ -123,7 +128,7 @@ public class Api {
         String method = "memberservice/updateMemberTag/suppliers/" + supplier_id + "/operator/" + staff_id;
         final String apiUri = AppConfig.BASE_URL + method;
         List<NetUtils.Param> params = new ArrayList<NetUtils.Param>();
-        params =NetUtils. getParameter(map,sign);
+        params = getParameter(map,sign);
         NetUtils.getInstance()._putAsyn(apiUri, callback, params);
     }
 
@@ -143,7 +148,7 @@ public class Api {
         String method = "memberservice/addMemberTag/suppliers/" + supplier_id + "/operator/" + staff_id;
         final String apiUri = AppConfig.BASE_URL + method;
         List<NetUtils.Param> params = new ArrayList<NetUtils.Param>();
-        params =NetUtils. getParameter(map,sign);
+        params = getParameter(map,sign);
         NetUtils.getInstance()._postAsyn(apiUri, callback, params);
     }
 
@@ -178,7 +183,53 @@ public class Api {
         NetUtils.getInstance()._getAsyn(apiUri, callback);
     }
 
-    
+
+    /**
+     * 个人信息-修改头像
+     *
+     * @param pic
+     * @param callback
+     */
+    public void updateLogo(File pic, final ApiCallback callback) {
+
+        String method = "staffs/" + staff_id;
+        final String apiUri = AppConfig.BASE_URL + method;
+        try {
+            NetUtils.getInstance()._postAsyn(apiUri, callback, pic, "header_img");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    /**
+     * 上传会议总结
+     * @param meeting_id
+     * @param formatted_address
+     * @param mImgUrls
+     * @param callback
+     */
+    public void uploadePics(String meeting_id,String formatted_address,
+                            List<String> mImgUrls, String field, ApiCallback callback) {
+        Map<String, String> map = new TreeMap<String, String>();
+        map.put("timestamp",getTime());
+        map.put("supplier_id", supplier_id);
+        map.put("staff_id", staff_id);
+        map.put("meeting_id", meeting_id);
+        map.put("summary_position", formatted_address);
+
+        String sign = EncryptionRule.encryption(AppConfig.APPSECRET, map);
+        List<NetUtils.Param> params = new ArrayList<NetUtils.Param>();
+        params = getParameter(map,sign);
+
+        String method ="suppliers/"+supplier_id+"/staff/"+staff_id+"/meeting/"+meeting_id+"/upload";
+        String base_url = AppConfig.BASE_URL +  method;
+        NetUtils.getInstance().uploadImg(base_url,mImgUrls,params,field,callback);
+    }
+
+
+
 
     private String getTime() {
         return System.currentTimeMillis() + "";

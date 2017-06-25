@@ -220,20 +220,6 @@ public class NetUtils {
 
 
 
-    /**
-     * put上传文件
-     * @param url
-     * @param callback
-     * @param file
-     * @param fileKey
-     * @param params
-     * @throws IOException
-     */
-
-    public static void _putAsyn(String url, ApiCallback callback, File file, String fileKey, List<Param> params) throws IOException {
-        Request request = buildMultipartFormRequest1(url, new File[]{file}, new String[]{fileKey}, params);
-        deliveryResult(callback, request);
-    }
 
     /**
      * 异步下载文件
@@ -297,41 +283,8 @@ public class NetUtils {
 
 
 
-
-
     //--------------------------------------------------------------------------------------------
 
-
-    public static Request buildMultipartFormRequest1(String url, File[] files,
-                                               String[] fileKeys, List<Param> params) {
-
-        MultipartBuilder builder = new MultipartBuilder()
-                .type(MultipartBuilder.FORM);
-
-        for (Param param : params) {
-            builder.addPart(Headers.of("Content-Disposition", "form-data; name=\"" + param.key + "\""),
-                    RequestBody.create(null, param.value));
-        }
-        if (files != null) {
-            RequestBody fileBody = null;
-            for (int i = 0; i < files.length; i++) {
-                File file = files[i];
-                String fileName = file.getName();
-                fileBody = RequestBody.create(MediaType.parse(guessMimeType(fileName)), file);
-                //TODO 根据文件名设置contentType
-                builder.addPart(Headers.of("Content-Disposition",
-                        "form-data; name=\"" + fileKeys[i] + "\"; filename=\"" + fileName + "\""),
-                        fileBody);
-
-            }
-        }
-
-        RequestBody requestBody = builder.build();
-        return new Request.Builder()
-                .url(url)
-                .put(requestBody)
-                .build();
-    }
 
 
 
@@ -455,7 +408,7 @@ public class NetUtils {
                 try {
                     String str = response.body().string();
 
-                    LogUtils.i("onResponse-后台响应：" + response.message() + "-" + response.code() + "\n后台返回数据：" + str);
+                    LogUtils.i("后台响应：" + response.message() + "-" + response.code() + "\n后台返回数据：" + str);
 
                     if(StringUtils.isNotEmpty(str)){
 
