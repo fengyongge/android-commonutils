@@ -41,6 +41,7 @@ public class EncryptionRule {
     }
 
 
+
     public static String toMD5(String or_Sign)  {
         String sign = null;
         sign = Sha1.shaEncrypt(or_Sign);

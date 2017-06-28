@@ -410,19 +410,28 @@ public class NetUtils {
 
                     LogUtils.i("后台响应：" + response.message() + "-" + response.code() + "\n后台返回数据：" + str);
 
-                    if(StringUtils.isNotEmpty(str)){
+                    if(response.code()>=200&&response.code()<300) {
 
-                        JSONObject result = JSON.parseObject(str);
+                        if(StringUtils.isNotEmpty(str)){
 
-                        if (Integer.parseInt(result.getString("code")) >= 200 && Integer.parseInt(result.getString("code")) < 300) {
-                            sendSuccessApiCallback(result, callback);
-                        } else {
-                            sendFailedStringCallback(result, callback);
+                            JSONObject result = JSON.parseObject(str); //根据自己后台code做判断
+
+                            if (Integer.parseInt(result.getString("code")) >= 200 && Integer.parseInt(result.getString("code")) < 300) {
+                                sendSuccessApiCallback(result, callback);
+                            } else {
+                                sendFailedStringCallback(result, callback);
+                            }
+
+                        }else{
+                            sendNetErrorStringCallback(response.message() + "-code:" + response.code(),callback);
                         }
-
                     }else{
+
                         sendNetErrorStringCallback(response.message() + "-code:" + response.code(),callback);
+
                     }
+
+
 
                 } catch (final Exception e) {
 

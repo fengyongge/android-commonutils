@@ -8,7 +8,7 @@ import com.google.gson.JsonParser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class gsonUitls {
+public class GsonUitls {
  
     private static Gson mGson = new Gson();
  
