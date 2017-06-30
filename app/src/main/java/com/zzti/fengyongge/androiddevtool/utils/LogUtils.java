@@ -5,7 +5,7 @@ import com.orhanobut.logger.Logger;
 
 /**
  * @author fengyongge
- * @Description  Preferences
+ * @Description  log日志
  */
 public class LogUtils {
 

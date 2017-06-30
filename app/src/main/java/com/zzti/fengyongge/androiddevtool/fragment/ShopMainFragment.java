@@ -24,6 +24,7 @@ import com.zzti.fengyongge.androiddevtool.ui.QueryActivity;
 import com.zzti.fengyongge.androiddevtool.utils.LogUtils;
 import com.zzti.fengyongge.androiddevtool.utils.PreferencesUtils;
 import com.zzti.fengyongge.androiddevtool.utils.StringUtils;
+import com.zzti.fengyongge.androiddevtool.utils.TimeUtils;
 import com.zzti.fengyongge.androiddevtool.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -78,7 +79,6 @@ public class ShopMainFragment extends Fragment {
             case R.id.tvName:
                 break;
             case R.id.tvLogin:
-
                 windowsBar = ProgressBarHelper.createWindowsBar(getActivity());
 
                 Api.Inst(getActivity()).Login("13661390463", "123456", new ApiCallback() {

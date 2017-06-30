@@ -36,20 +36,20 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.MultipartBody;
 
 
-public class NetUtils {
+public class OkhttpUtils {
   
-    public  static NetUtils mInstance;
+    public  static OkhttpUtils mInstance;
     public  static OkHttpClient mOkHttpClient;
     public static Handler mDelivery;
 
 
 
-    public static NetUtils getInstance() {
+    public static OkhttpUtils getInstance() {
 
         if (mInstance == null) {
-            synchronized (NetUtils.class) {
+            synchronized (OkhttpUtils.class) {
                 if (mInstance == null) {
-                    mInstance = new NetUtils();
+                    mInstance = new OkhttpUtils();
                 }
             }
         }
@@ -664,17 +664,17 @@ public class NetUtils {
      * @param sign
      * @return
      */
-    public static List<NetUtils.Param> getParameter(Map<String, String> map, String sign){
+    public static List<OkhttpUtils.Param> getParameter(Map<String, String> map, String sign){
 
         Iterator<Map.Entry<String, String>> it = map.entrySet().iterator();
-        List<NetUtils.Param> params = new ArrayList<>();
+        List<OkhttpUtils.Param> params = new ArrayList<>();
         while (it.hasNext()) {
             Map.Entry<String, String> entry = it.next();
-            params.add(new NetUtils.Param(entry.getKey(),entry.getValue()!= null && entry.getValue().length()
+            params.add(new OkhttpUtils.Param(entry.getKey(),entry.getValue()!= null && entry.getValue().length()
                     > 0 ? entry.getValue() : ""));
         }
-        params.add(new NetUtils.Param("sign", sign));
-        params.add(new NetUtils.Param("publicKey", AppConfig.PUBLICKEY));
+        params.add(new OkhttpUtils.Param("sign", sign));
+        params.add(new OkhttpUtils.Param("publicKey", AppConfig.PUBLICKEY));
 
         StringBuilder buffer = new StringBuilder();
         for (int i = 0; i < params.size(); i++) {

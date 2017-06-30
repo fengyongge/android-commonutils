@@ -19,7 +19,6 @@ import com.zzti.fengyongge.androiddevtool.adapter.ViewHolder;
 import com.zzti.fengyongge.androiddevtool.bean.TestBean;
 import com.zzti.fengyongge.androiddevtool.dialog.ProgressBarHelper;
 import com.zzti.fengyongge.androiddevtool.myinterface.ApiCallback;
-import com.zzti.fengyongge.androiddevtool.net.NetUtils;
 import com.zzti.fengyongge.androiddevtool.net.api.Api;
 import com.zzti.fengyongge.androiddevtool.utils.ToastUtils;
 import com.zzti.fengyongge.androiddevtool.view.RefreshLayout;

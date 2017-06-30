@@ -129,5 +129,33 @@ public class TimeUtils {
 		return null;
 	}
 
+	/**
+	 * 根据时间字符串获取时间
+	 * @param timeString
+	 */
+	public static String getDate(String timeString){
+		String firstDay="";
+		String endDay="";
+		try {
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			Date date2;
+			date2 = format.parse(timeString);
+			Calendar c = Calendar.getInstance();
+			c.setTime(date2);
+			// 获取前月的第一天
+			c.add(Calendar.MONTH, 0);
+			c.set(Calendar.DAY_OF_MONTH, 1);
+			firstDay = format.format(c.getTime());
+			// 获取前月的最后一天
+			c.add(Calendar.MONTH, 1);
+			c.set(Calendar.DAY_OF_MONTH, 0);
+			endDay = format.format(c.getTime());
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return firstDay+":"+endDay;
+	}
+
 
 }

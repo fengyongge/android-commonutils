@@ -15,7 +15,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.zzti.fengyongge.androiddevtool.R;
 import com.zzti.fengyongge.androiddevtool.app.MyApp;
 import com.zzti.fengyongge.androiddevtool.myinterface.ApiCallback;
-import com.zzti.fengyongge.androiddevtool.net.NetUtils;
 import com.zzti.fengyongge.androiddevtool.net.api.Api;
 import com.zzti.fengyongge.androiddevtool.utils.AppUpdateUtils;
 import com.zzti.fengyongge.androiddevtool.utils.AppUtils;

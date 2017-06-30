@@ -6,9 +6,8 @@ import com.zzti.fengyongge.androiddevtool.app.AppConfig;
 import com.zzti.fengyongge.androiddevtool.app.MyApp;
 import com.zzti.fengyongge.androiddevtool.encrypt.EncryptionRule;
 import com.zzti.fengyongge.androiddevtool.myinterface.ApiCallback;
-import com.zzti.fengyongge.androiddevtool.net.NetUtils;
+import com.zzti.fengyongge.androiddevtool.net.OkhttpUtils;
 import com.zzti.fengyongge.androiddevtool.utils.PreferencesUtils;
-import com.zzti.fengyongge.androiddevtool.utils.ToastUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,8 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static com.zzti.fengyongge.androiddevtool.encrypt.EncryptionRule.toMD5;
-import static com.zzti.fengyongge.androiddevtool.net.NetUtils.getParameter;
+import static com.zzti.fengyongge.androiddevtool.net.OkhttpUtils.getParameter;
 
 /**
  * Created by fengyongge on 2017/5/23.
@@ -35,7 +33,7 @@ public class Api {
     public static Api Inst(Context context) {
 
         if (mInstance == null) {
-            synchronized (NetUtils.class) {
+            synchronized (OkhttpUtils.class) {
                 if (mInstance == null) {
 
                     mInstance = new Api();
@@ -47,7 +45,7 @@ public class Api {
         staff_id= PreferencesUtils.getString(cxt,"staff_id");
         supplier_id= PreferencesUtils.getString(cxt,"supplier_id");
 
-//        if(NetUtils.isNetworkAvailable(context)){
+//        if(OkhttpUtils.isNetworkAvailable(context)){
 //            ToastUtils.showToast(context,"网络异常");
 //        }
 
@@ -71,10 +69,10 @@ public class Api {
 
         String method = "staffservice/login";
         final String apiUri = AppConfig.BASE_URL +  method;
-        List<NetUtils.Param> params = new ArrayList<NetUtils.Param>();
+        List<OkhttpUtils.Param> params = new ArrayList<OkhttpUtils.Param>();
         params = getParameter(map,sign);
 
-        NetUtils.getInstance()._postAsyn(apiUri, callback, params);
+        OkhttpUtils.getInstance()._postAsyn(apiUri, callback, params);
 
     }
 
@@ -85,11 +83,11 @@ public class Api {
         Map<String, String> map = new TreeMap<String, String>();
         map.put("timestamp", getTime());
         String sign = EncryptionRule.encryption(AppConfig.APPSECRET, map);
-        String s = NetUtils.getpParameter(map,sign);
+        String s = OkhttpUtils.getpParameter(map,sign);
 
         String method = "memberservice/queryStaffTag/suppliers/" + supplier_id + "/operator/" + staff_id + "?"+s;
         final String apiUri = AppConfig.BASE_URL + method;
-        NetUtils.getInstance()._getAsyn(apiUri, callback);
+        OkhttpUtils.getInstance()._getAsyn(apiUri, callback);
     }
 
     /**
@@ -103,13 +101,13 @@ public class Api {
         map.put("operator_id", staff_id);
         map.put("tagids", tag_id);
         String sign = EncryptionRule.encryption(AppConfig.APPSECRET, map);
-        List<NetUtils.Param> params = new ArrayList<NetUtils.Param>();
+        List<OkhttpUtils.Param> params = new ArrayList<OkhttpUtils.Param>();
         params = getParameter(map,sign);
 
         String method = "memberservice/delMemberTag/suppliers/" + supplier_id + "/operator/" + staff_id;
         final String apiUri = AppConfig.BASE_URL + method;
 
-        NetUtils.getInstance()._deleteAsyn(apiUri, callback, params);
+        OkhttpUtils.getInstance()._deleteAsyn(apiUri, callback, params);
     }
 
     /**
@@ -127,9 +125,9 @@ public class Api {
 
         String method = "memberservice/updateMemberTag/suppliers/" + supplier_id + "/operator/" + staff_id;
         final String apiUri = AppConfig.BASE_URL + method;
-        List<NetUtils.Param> params = new ArrayList<NetUtils.Param>();
+        List<OkhttpUtils.Param> params = new ArrayList<OkhttpUtils.Param>();
         params = getParameter(map,sign);
-        NetUtils.getInstance()._putAsyn(apiUri, callback, params);
+        OkhttpUtils.getInstance()._putAsyn(apiUri, callback, params);
     }
 
 
@@ -147,9 +145,9 @@ public class Api {
 
         String method = "memberservice/addMemberTag/suppliers/" + supplier_id + "/operator/" + staff_id;
         final String apiUri = AppConfig.BASE_URL + method;
-        List<NetUtils.Param> params = new ArrayList<NetUtils.Param>();
+        List<OkhttpUtils.Param> params = new ArrayList<OkhttpUtils.Param>();
         params = getParameter(map,sign);
-        NetUtils.getInstance()._postAsyn(apiUri, callback, params);
+        OkhttpUtils.getInstance()._postAsyn(apiUri, callback, params);
     }
 
     /**
@@ -161,11 +159,11 @@ public class Api {
         map.put("timestamp", getTime());
         map.put("type", "android");
         String sign = EncryptionRule.encryption(AppConfig.APPSECRET, map);
-        String s = NetUtils.getpParameter(map,sign);
+        String s = OkhttpUtils.getpParameter(map,sign);
 
         String method = "apk?"+s;
         final String apiUri = AppConfig.BASE_URL + method;
-        NetUtils.getInstance()._getAsyn(apiUri, callback);
+        OkhttpUtils.getInstance()._getAsyn(apiUri, callback);
     }
 
 
@@ -177,10 +175,10 @@ public class Api {
         map.put("per_page","20");
         String sign = EncryptionRule.encryption(AppConfig.APPSECRET, map);
 
-        String s = NetUtils.getpParameter(map,sign);
+        String s = OkhttpUtils.getpParameter(map,sign);
         String method ="meeting/assistant?"+s;
         final String apiUri = AppConfig.BASE_URL +  method;
-        NetUtils.getInstance()._getAsyn(apiUri, callback);
+        OkhttpUtils.getInstance()._getAsyn(apiUri, callback);
     }
 
 
@@ -195,7 +193,7 @@ public class Api {
         String method = "staffs/" + staff_id;
         final String apiUri = AppConfig.BASE_URL + method;
         try {
-            NetUtils.getInstance()._postAsyn(apiUri, callback, pic, "header_img");
+            OkhttpUtils.getInstance()._postAsyn(apiUri, callback, pic, "header_img");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -220,12 +218,12 @@ public class Api {
         map.put("summary_position", formatted_address);
 
         String sign = EncryptionRule.encryption(AppConfig.APPSECRET, map);
-        List<NetUtils.Param> params = new ArrayList<NetUtils.Param>();
+        List<OkhttpUtils.Param> params = new ArrayList<OkhttpUtils.Param>();
         params = getParameter(map,sign);
 
         String method ="suppliers/"+supplier_id+"/staff/"+staff_id+"/meeting/"+meeting_id+"/upload";
         String base_url = AppConfig.BASE_URL +  method;
-        NetUtils.getInstance().uploadImg(base_url,mImgUrls,params,field,callback);
+        OkhttpUtils.getInstance().uploadImg(base_url,mImgUrls,params,field,callback);
     }
 
 
