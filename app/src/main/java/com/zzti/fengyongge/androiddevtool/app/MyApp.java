@@ -25,22 +25,31 @@ public class MyApp extends Application {
     public void onCreate() {
         // TODO Auto-generated method stub
         super.onCreate();
-
         //初始化
         LogUtils.init(AppConfig.DEBUG);
+        initImageLoad();
+    }
 
 
+    /**
+     * 初始化imageload
+     */
+    public void initImageLoad(){
 
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-//				.showImageOnFail(R.drawable.test)
-//				.showImageOnFail(R.drawable.test)
-                .cacheInMemory(true).cacheOnDisc(true).build();
-
+//                .showImageOnLoading(R.drawable.ic_stub) //取消配置防止oom
+//                .showImageOnFail(R.drawable.ic_error)
+                .cacheInMemory(true)
+                .cacheOnDisc(true)
+//                .cacheOnDisk(true)
+//                .bitmapConfig(Bitmap.Config.RGB_565)
+                .build();
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
                 .defaultDisplayImageOptions(defaultOptions).build();
 
         ImageLoader.getInstance().init(config);
     }
+
 
     public static void addActivity(Activity activity) {
         con_list.add(activity);
