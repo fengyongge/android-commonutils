@@ -1,8 +1,12 @@
 package com.zzti.fengyongge.androiddevtool.app;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.provider.SyncStateContract;
+
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -25,9 +29,28 @@ public class MyApp extends Application {
     public void onCreate() {
         // TODO Auto-generated method stub
         super.onCreate();
-        //初始化
+
         LogUtils.init(AppConfig.DEBUG);
         initImageLoad();
+
+//        String processName = getProcessName(this, android.os.Process.myPid());//防止多进程时多次启动Application的onCreate造成多次初始化
+//        if (processName != null) {
+//            boolean defaultProcess = processName.equals("com.zzti.fengyongge.androiddevtool");
+//            // 默认的主进程启动时初始化应用
+//            if (defaultProcess) {
+//                //初始化
+//                LogUtils.init(AppConfig.DEBUG);
+//                initImageLoad();
+//                Logger.i("22222");
+//            }
+//            // 其他进程启动时初始化对应内容
+//            else if (processName.contains(":webbrowser")) {
+//
+//            } else if (processName.contains(":wallet")) {
+//
+//            }
+//        }
+
     }
 
 
@@ -60,6 +83,22 @@ public class MyApp extends Application {
         for (int i = 0; i < con_list.size(); i++) {
             con_list.get(i).finish();
         }
+    }
+
+
+
+    public static String getProcessName(Context cxt, int pid) {
+        ActivityManager am = (ActivityManager) cxt.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> runningApps = am.getRunningAppProcesses();
+        if (runningApps == null) {
+            return null;
+        }
+        for (ActivityManager.RunningAppProcessInfo procInfo : runningApps) {
+            if (procInfo.pid == pid) {
+                return procInfo.processName;
+            }
+        }
+        return null;
     }
 
 
