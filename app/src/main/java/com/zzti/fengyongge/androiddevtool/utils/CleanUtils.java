@@ -206,4 +206,4 @@ public class CleanUtils {
         return getFormatSize(getFolderSize(file));
     }
 
-}  
+}
