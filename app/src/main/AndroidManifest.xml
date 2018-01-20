@@ -3,7 +3,7 @@
     package="com.zzti.fengyongge.androiddevtool">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".app.MyApp"
@@ -22,8 +22,9 @@
         </activity>
         <activity android:name=".ui.BroadcastSampleActivity" />
         <activity android:name=".ui.RefreshActivity" />
-        <activity android:name=".ui.BaseActivity"></activity>
-        <activity android:name=".ui.QueryActivity"></activity>
+        <activity android:name=".ui.BaseActivity" />
+        <activity android:name=".ui.QueryActivity" />
+        <activity android:name=".test.TestActivity"></activity>
     </application>
 
 </manifest>
