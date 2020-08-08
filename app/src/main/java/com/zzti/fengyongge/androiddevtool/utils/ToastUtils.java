@@ -11,17 +11,10 @@ import java.util.List;
  * @Description  toast
  */
 
-
 public class ToastUtils {
 
 	public static Toast toast;
 
-	/**
-	 * function 防止多次弹toast
-	 * author fengyongge
-	 * @param context
-	 * @param content
-	 */
 	public static void showToast(Context context, String content){
 		if(toast==null){
 			toast = Toast.makeText(context,content, Toast.LENGTH_SHORT);

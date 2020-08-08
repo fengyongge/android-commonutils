@@ -5,8 +5,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
-        android:name=".app.MyApp"
+        android:name=".AndroidUtilsApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,11 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.BroadcastSampleActivity" />
-        <activity android:name=".ui.RefreshActivity" />
-        <activity android:name=".ui.BaseActivity" />
-        <activity android:name=".ui.QueryActivity" />
-        <activity android:name=".test.TestActivity"></activity>
     </application>
 
 </manifest>

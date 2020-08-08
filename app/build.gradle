@@ -47,49 +47,28 @@ android {
         abortOnError false
     }
 
+
     android.applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            def outputFile = output.outputFile
-            if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                //这里修改apk文件名
-                def fileName = "androiddevtool-${defaultConfig.versionCode}-${defaultConfig.versionName}-${releaseTime()}.apk"
-                output.outputFile = new File(outputFile.parent, fileName)
-            }
+        variant.outputs.all {
+            outputFileName = "v${defaultConfig.versionName}_${variant.buildType.name + "_" + releaseTime()}_zsq.apk"
         }
     }
+
 
 
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/codec.jar')
+    implementation files('libs/commons-lang3-3.1.jar')
+    implementation files('libs/guava-18.0.jar')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
-
-    compile 'com.alibaba:fastjson:1.1.55.android'
-    compile 'com.orhanobut:logger:1.15'
-    compile 'com.jakewharton:butterknife:8.5.1'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'top.zibin:Luban:1.0.9'
-    compile 'com.google.code.gson:gson:2.8.0'
-    compile 'com.android.support:support-v4:25.3.0'
-    testCompile 'junit:junit:4.12'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-    compile files('libs/afinal-0.3.32-bin.jar')
+    implementation 'com.android.support:appcompat-v7:25.3.0'
 
 
-
-    compile 'com.squareup.okhttp:okhttp:2.7.5'
-    compile 'com.squareup.okio:okio:1.9.0'
-    compile 'com.squareup.okhttp3:okhttp:3.6.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
-
-
-    compile 'com.squareup.picasso:picasso:2.5.2'
 }
 
 
