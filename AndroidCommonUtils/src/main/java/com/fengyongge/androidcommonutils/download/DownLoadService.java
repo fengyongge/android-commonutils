@@ -1,4 +1,4 @@
-package com.zzti.fengyongge.androiddevtool.utils.download;
+package com.fengyongge.androidcommonutils.download;
 
 import android.app.NotificationManager;
 import android.app.Service;

@@ -1,4 +1,4 @@
-package com.zzti.fengyongge.androiddevtool.utils.download;
+package com.fengyongge.androidcommonutils.download;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 
 import com.zzti.fengyongge.androiddevtool.R;
-import com.zzti.fengyongge.androiddevtool.utils.download.DownLoadService;
 
 
 import java.io.File;

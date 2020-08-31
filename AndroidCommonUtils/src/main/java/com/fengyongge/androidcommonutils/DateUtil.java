@@ -4,7 +4,7 @@
  * Copyright: Copyright (c) 2015<br/>
  * Company: gigold<br/>
  */
-package com.zzti.fengyongge.androiddevtool.utils;
+package com.fengyongge.androidcommonutils;
 
 
 import java.text.ParseException;

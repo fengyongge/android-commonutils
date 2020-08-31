@@ -1,4 +1,4 @@
-package com.zzti.fengyongge.androiddevtool.utils;
+package com.fengyongge.androidcommonutils;
 
 import java.util.Collection;
 import java.util.List;

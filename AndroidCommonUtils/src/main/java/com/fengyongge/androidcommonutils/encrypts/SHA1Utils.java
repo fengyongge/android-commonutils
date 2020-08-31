@@ -1,4 +1,4 @@
-package com.zzti.fengyongge.androiddevtool.utils.encrypts;
+package com.fengyongge.androidcommonutils.encrypts;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

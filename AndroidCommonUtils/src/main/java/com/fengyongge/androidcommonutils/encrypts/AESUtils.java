@@ -1,4 +1,4 @@
-package com.zzti.fengyongge.androiddevtool.utils.encrypts;
+package com.fengyongge.androidcommonutils.encrypts;
 
 import org.apaches.commons.codec.binary.Hex;
 

@@ -1,4 +1,4 @@
-package com.zzti.fengyongge.androiddevtool.utils;
+package com.fengyongge.androidcommonutils;
 
 import android.content.Context;
 import android.widget.TextView;

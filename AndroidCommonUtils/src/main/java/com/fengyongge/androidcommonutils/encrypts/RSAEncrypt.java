@@ -1,4 +1,4 @@
-package com.zzti.fengyongge.androiddevtool.utils.encrypts;
+package com.fengyongge.androidcommonutils.encrypts;
 
 
 
