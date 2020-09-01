@@ -1,6 +1,7 @@
 package com.fengyongge.androidcommonutils.encrypts;
 
-import org.apaches.commons.codec.binary.Hex;
+
+import org.apache.commons.codec.binary.Hex;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,9 +14,9 @@ import javax.crypto.spec.SecretKeySpec;
  *
  * @author fengyongge(fengyongge98@gmail.com)
  * @version V1.0
- * @date 2020/6/1
+ * @date 2019/6/1
  */
-public class AESUtils {
+public final class AESUtils {
     private static final String KEY_ALGORITHM = "AES";
     //默认的加密算法
     private static final String DEFAULT_CIPHER_ALGORITHM = "AES/ECB/PKCS5Padding";

@@ -2,7 +2,8 @@ package com.fengyongge.androidcommonutils.encrypts;
 
 
 
-import org.apaches.commons.codec.binary.Hex;
+
+import org.apache.commons.codec.binary.Hex;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -23,12 +24,13 @@ import javax.crypto.Cipher;
 
 /**
  * describe
- *
+ * rsa
  * @author fengyongge(fengyongge98@gmail.com)
  * @version V1.0
- * @date 2020/5/19
+ * @date 2019/6/1
  */
-public class RSAEncrypt {
+
+public final class RSAEncrypt {
 	public static final String CHARSET = "UTF-8";
 	public static final String RSA_ALGORITHM = "RSA";
 	//服务端是RSA，android端改成这个

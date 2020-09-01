@@ -1,9 +1,4 @@
-/**
- * Title: DateUtil.java<br/>
- * Description: <br/>
- * Copyright: Copyright (c) 2015<br/>
- * Company: gigold<br/>
- */
+
 package com.fengyongge.androidcommonutils;
 
 
@@ -16,9 +11,9 @@ import java.util.Date;
  * 时间转换格式
  * @author fengyongge(fengyongge98@gmail.com)
  * @version V1.0
- * @date 2020/8/8
+ * @date 2019/6/1
  */
-public class DateUtil {
+public final class DateUtil {
 
     public static final String YYYYMMDD_1 = "yyyyMMdd";
     public static final String YYYYMMDD_2 = "yyyy-MM-dd";
@@ -38,7 +33,6 @@ public class DateUtil {
     public static String formatDateLongToString(Long timeLongVal, String descFormat) {
         Date date = new Date(timeLongVal);
         SimpleDateFormat df = new SimpleDateFormat(descFormat);
-
         return df.format(date);
     }
 
@@ -48,9 +42,9 @@ public class DateUtil {
      * @param user_time
      * @return
      */
-    public static String convertStringToDate(String user_time) {
+    public static String convertStringToDate(String user_time, String descFormat) {
         String re_time = null;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat(descFormat);
         Date d;
         try {
             d = sdf.parse(user_time);

@@ -8,9 +8,10 @@ import java.io.UnsupportedEncodingException;
  *
  * @author fengyongge(fengyongge98@gmail.com)
  * @version V1.0
- * @date 2020/6/1
+ * @date 2019/6/1
  */
-public class Base64Utils
+
+public final class Base64Utils
 {
 	private static char[] base64EncodeChars = new char[]
 	{ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',

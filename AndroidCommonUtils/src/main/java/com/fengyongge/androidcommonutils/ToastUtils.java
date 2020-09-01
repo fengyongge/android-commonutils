@@ -7,11 +7,14 @@ import android.widget.Toast;
 import java.util.List;
 
 /**
- * @author fengyongge
- * @Description  toast
+ * describe
+ * toast
+ * @author fengyongge(fengyongge98@gmail.com)
+ * @version V1.0
+ * @date 2019/6/1
  */
 
-public class ToastUtils {
+public final class ToastUtils {
 
 	public static Toast toast;
 

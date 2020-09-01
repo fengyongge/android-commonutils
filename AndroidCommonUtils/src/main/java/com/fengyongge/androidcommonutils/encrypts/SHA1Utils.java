@@ -6,11 +6,14 @@ import java.security.NoSuchAlgorithmException;
 
 
 /**
- * @author fengyongge
- * @Description  SHA1 加密
+ * describe
+ * SHA1 加密
+ * @author fengyongge(fengyongge98@gmail.com)
+ * @version V1.0
+ * @date 2019/6/1
  */
 
-public class SHA1Utils {
+public final class SHA1Utils {
 
     /**
      * SHA加密

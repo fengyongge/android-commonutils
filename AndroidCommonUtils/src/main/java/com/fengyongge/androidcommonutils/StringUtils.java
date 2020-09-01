@@ -8,10 +8,10 @@ import java.util.List;
  * 字符串相关
  * @author fengyongge(fengyongge98@gmail.com)
  * @version V1.0
- * @date 2020/8/8
+ * @date 2019/6/1
  */
 
-public class StringUtils {
+public final class StringUtils {
 
 	public static boolean isEmpty(CharSequence cs) {
 		return (cs == null) || (cs.length() == 0);

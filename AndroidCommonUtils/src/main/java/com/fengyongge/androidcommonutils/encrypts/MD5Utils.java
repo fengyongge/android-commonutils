@@ -8,9 +8,9 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author fengyongge(fengyongge98@gmail.com)
  * @version V1.0
- * @date 2020/6/1
+ * @date 2019/6/1
  */
-public class MD5Utils {
+public final class MD5Utils {
 	private final static String[] strDigits = {"0", "1", "2", "3", "4", "5",
 			"6", "7", "8", "9", "A", "B", "C", "D", "E", "F"};
 

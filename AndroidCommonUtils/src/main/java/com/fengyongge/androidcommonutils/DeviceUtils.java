@@ -5,6 +5,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
+import android.util.DisplayMetrics;
+import android.view.WindowManager;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,9 +19,9 @@ import java.math.BigDecimal;
  * 手机参数相关
  * @author fengyongge(fengyongge98@gmail.com)
  * @version V1.0
- * @date 2020/8/8
+ * @date 2019/6/1
  */
-public class DeviceUtils {
+public final class DeviceUtils {
 
     /**
      * imei
@@ -43,7 +45,36 @@ public class DeviceUtils {
     private DeviceUtils() {
         /* cannot be instantiated */
         throw new UnsupportedOperationException("cannot be instantiated");
+    }
 
+    /**
+     * 获取屏幕的宽
+     */
+    public static int getWinWidth(Context context) {
+        WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics dm = new DisplayMetrics();
+        if (manager != null) {
+            manager.getDefaultDisplay().getMetrics(dm);
+            return dm.widthPixels;
+        } else {
+            return 0;
+        }
+
+    }
+
+
+    /**
+     * 获取屏幕的高
+     */
+    public static int getWinHeight(Context context) {
+        WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics dm = new DisplayMetrics();
+        if (manager != null) {
+            manager.getDefaultDisplay().getMetrics(dm);
+            return dm.heightPixels;
+        } else {
+            return 0;
+        }
     }
 
 
@@ -123,7 +154,8 @@ public class DeviceUtils {
     public static String[] getCpuInfo() {
         String str1 = "/proc/cpuinfo";
         String str2 = "";
-        String[] cpuInfo = {"", ""}; // 1-cpu型号 //2-cpu频率
+        // 1-cpu型号 //2-cpu频率
+        String[] cpuInfo = {"", ""};
         String[] arrayOfString;
         try {
             FileReader fr = new FileReader(str1);

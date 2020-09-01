@@ -9,9 +9,9 @@ import java.util.Map;
  * 集合相关
  * @author fengyongge(fengyongge98@gmail.com)
  * @version V1.0
- * @date 2020/5/10
+ * @date 2019/6/1
  */
-public class ArrayUtil {
+public final class ArrayUtil {
     //判断集合是否为空
     public static boolean isEmpty(Collection<?> collection) {
         return collection == null || collection.isEmpty();
@@ -31,4 +31,6 @@ public class ArrayUtil {
     public static boolean isEmpty(List<Object> list) {
         return list == null || list.size() == 0;
     }
+
+
 }

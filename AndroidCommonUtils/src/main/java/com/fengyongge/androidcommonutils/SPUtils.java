@@ -10,9 +10,9 @@ import android.content.SharedPreferences;
  * SP相关
  * @author fengyongge(fengyongge98@gmail.com)
  * @version V1.0
- * @date 2020/8/8
+ * @date 2019/6/1
  */
-public class SPUtils {
+public final class SPUtils {
 
     public static String PREFERENCE_NAME = "preferences";
 
