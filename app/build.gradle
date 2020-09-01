@@ -6,12 +6,12 @@ def releaseTime() {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.zzti.fengyongge.androiddevtool"
         minSdkVersion 15
-        targetSdkVersion 22
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -59,9 +59,7 @@ android {
 }
 
 dependencies {
-    implementation files('libs/codec.jar')
     implementation files('libs/commons-lang3-3.1.jar')
-    implementation files('libs/guava-18.0.jar')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -72,16 +70,13 @@ dependencies {
     /**
      * 清理缓存方便使用snapshot版本
      */
-    configurations.all {
-        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-        resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
-    }
+//    configurations.all {
+//        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+//        resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+//    }
 
 //    implementation 'com.github.fengyongge:androidDevTool:0.0.3'
-
-    implementation 'com.github.fengyongge:androidDevTool:master-SNAPSHOT'
-
-
+//    implementation 'com.github.fengyongge:androidDevTool:master-SNAPSHOT'
 
 }
 
