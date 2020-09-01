@@ -69,6 +69,20 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.0'
 
 
+    /**
+     * 清理缓存方便使用snapshot版本
+     */
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+        resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+    }
+
+//    implementation 'com.github.fengyongge:androidDevTool:0.0.3'
+
+    implementation 'com.github.fengyongge:androidDevTool:master-SNAPSHOT'
+
+
+
 }
 
 
