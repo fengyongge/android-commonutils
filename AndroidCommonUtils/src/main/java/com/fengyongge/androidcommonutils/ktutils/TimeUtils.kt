@@ -1,4 +1,3 @@
-package com.fengyongge.androidutils.utils
 
 import java.text.SimpleDateFormat
 import java.util.*

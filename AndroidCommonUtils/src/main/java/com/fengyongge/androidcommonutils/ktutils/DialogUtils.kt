@@ -1,4 +1,4 @@
-package com.fengyongge.androidutils.utils
+package com.fengyongge.androidcommonutils.ktutils
 
 import android.content.Context
 import androidx.appcompat.app.AlertDialog
@@ -56,13 +56,13 @@ class DialogUtils {
      */
     private var mDialog: AlertDialog? = null
     fun showAlertDialog(
-        context: Context?,
-        ok: String?,
-        cancel: String?,
-        title: String?,
-        content: String?,
-        listenerYes: OnOkClickListener?,
-        listenerNo: OnCancelClickListener?
+            context: Context?,
+            ok: String?,
+            cancel: String?,
+            title: String?,
+            content: String?,
+            listenerYes: OnOkClickListener?,
+            listenerNo: OnCancelClickListener?
     ) {
         val builder =
             AlertDialog.Builder(context!!)

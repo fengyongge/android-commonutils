@@ -1,4 +1,4 @@
-package com.fengyongge.androidutils.utils
+package com.fengyongge.androidcommonutils.ktutils
 
 import android.content.Context
 import android.util.DisplayMetrics

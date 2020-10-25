@@ -1,5 +1,3 @@
-package com.fengyongge.androidutils.utils
-
 import android.os.Environment
 import android.text.TextUtils
 import java.io.File

@@ -1,4 +1,4 @@
-package com.fengyongge.androidutils.utils
+package com.fengyongge.androidcommonutils.ktutils
 
 import com.fengyongge.androidcommonutils.AndroidCommonUtils
 import java.io.File
