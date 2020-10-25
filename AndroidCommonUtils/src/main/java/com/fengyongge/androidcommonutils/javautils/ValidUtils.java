@@ -1,11 +1,11 @@
-package com.fengyongge.androidcommonutils;
+package com.fengyongge.androidcommonutils.javautils;
 
 
 /**
  * describe
  * 校验正确性
  * @author fengyongge(fengyongge98@gmail.com)
- * @version V1.0
+ * GitHub: https://github.com/fengyongge/android-commonutils
  * @date 2019/6/1
  */
 public final class ValidUtils {

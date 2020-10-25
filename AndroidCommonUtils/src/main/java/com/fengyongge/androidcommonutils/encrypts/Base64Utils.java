@@ -7,7 +7,7 @@ import java.io.UnsupportedEncodingException;
  * describe
  *
  * @author fengyongge(fengyongge98@gmail.com)
- * @version V1.0
+ * GitHub: https://github.com/fengyongge/android-commonutils
  * @date 2019/6/1
  */
 

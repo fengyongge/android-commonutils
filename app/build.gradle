@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 
 def releaseTime() {
@@ -9,7 +10,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
     defaultConfig {
-        applicationId "com.zzti.fengyongge.androiddevtool"
+        applicationId "com.fengyongge.androidcommonutils"
         minSdkVersion 15
         targetSdkVersion 29
         versionCode 1
@@ -59,14 +60,17 @@ android {
 }
 
 dependencies {
-    implementation files('libs/commons-lang3-3.1.jar')
+//    implementation files('libs/commons-lang3-3.1.jar')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 
+    implementation project(":AndroidCommonUtils")
     /**
      * 清理缓存方便使用snapshot版本
      */
@@ -78,6 +82,9 @@ dependencies {
 //    implementation 'com.github.fengyongge:androidDevTool:0.0.3'
 //    implementation 'com.github.fengyongge:androidDevTool:master-SNAPSHOT'
 
+}
+repositories {
+    mavenCentral()
 }
 
 

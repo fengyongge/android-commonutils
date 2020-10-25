@@ -9,7 +9,7 @@ import java.security.NoSuchAlgorithmException;
  * describe
  * SHA1 加密
  * @author fengyongge(fengyongge98@gmail.com)
- * @version V1.0
+ * GitHub: https://github.com/fengyongge/android-commonutils
  * @date 2019/6/1
  */
 
@@ -38,9 +38,6 @@ public final class SHA1Utils {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-
-//            md.update(bt);
-
         return strDes;
     }
 

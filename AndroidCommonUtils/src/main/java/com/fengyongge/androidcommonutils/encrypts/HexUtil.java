@@ -4,7 +4,7 @@ package com.fengyongge.androidcommonutils.encrypts;
  * describe
  * 十六进制数相关工具类
  * @author fengyongge(fengyongge98@gmail.com)
- * @version V1.0
+ * GitHub: https://github.com/fengyongge/android-commonutils
  * @date 2019/6/1
  */
 public final class HexUtil {

@@ -1,5 +1,5 @@
 
-package com.fengyongge.androidcommonutils;
+package com.fengyongge.androidcommonutils.javautils;
 
 
 import java.text.ParseException;
@@ -10,10 +10,10 @@ import java.util.Date;
  * describe
  * 时间转换格式
  * @author fengyongge(fengyongge98@gmail.com)
- * @version V1.0
+ * GitHub: https://github.com/fengyongge/android-commonutils
  * @date 2019/6/1
  */
-public final class DateUtil {
+public final class DateUtils {
 
     public static final String YYYYMMDD_1 = "yyyyMMdd";
     public static final String YYYYMMDD_2 = "yyyy-MM-dd";
@@ -21,8 +21,6 @@ public final class DateUtil {
     public static final String YYYYMMDD_4 = "yyyy.MM.dd";
     public static final String YYYY_MM_DD_HH_MM_SS_1= "yyyy-MM-dd_HH_mm_ss";
     public static final String YYYY_MM_DD_HH_MM_SS_2 = "yyyy-MM-dd HH:mm:ss";
-
-
 
     /**
      * 时间戳转相应格式的字符串

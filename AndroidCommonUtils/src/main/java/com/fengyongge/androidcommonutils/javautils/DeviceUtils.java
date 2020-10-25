@@ -1,4 +1,4 @@
-package com.fengyongge.androidcommonutils;
+package com.fengyongge.androidcommonutils.javautils;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -18,7 +18,7 @@ import java.math.BigDecimal;
  * describe
  * 手机参数相关
  * @author fengyongge(fengyongge98@gmail.com)
- * @version V1.0
+ * GitHub: https://github.com/fengyongge/android-commonutils
  * @date 2019/6/1
  */
 public final class DeviceUtils {
