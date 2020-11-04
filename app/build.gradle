@@ -2,16 +2,19 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 
+
+
 def releaseTime() {
     return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
 }
+
 
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.fengyongge.androidcommonutils"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -51,7 +54,7 @@ android {
 
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "v${defaultConfig.versionName}_${variant.buildType.name + "_" + releaseTime()}_zsq.apk"
+            outputFileName = "v${defaultConfig.versionName}_${variant.buildType.name + "_" + releaseTime()}_android_commonutils.apk"
         }
     }
 
@@ -62,6 +65,7 @@ android {
 dependencies {
 //    implementation files('libs/commons-lang3-3.1.jar')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     androidTestCompile('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })

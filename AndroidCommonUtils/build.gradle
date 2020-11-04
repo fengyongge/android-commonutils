@@ -27,14 +27,12 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     testImplementation 'junit:junit:4.12'
-
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //工具类
     implementation("com.google.guava:guava:29.0-android")
     implementation 'commons-codec:commons-codec:1.4'
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
-    //
-    implementation "androidx.core:core-ktx:+"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 }
 repositories {

@@ -17,14 +17,14 @@ class AndroidCommonUtils(context: Context) {
         /**
          * 初始化
          */
-        fun init(context: Context): AndroidCommonUtils {
+        internal fun init(context: Context): AndroidCommonUtils {
             Companion.context = context
             instance =
-                AndroidCommonUtils(context)
+                    AndroidCommonUtils(context)
             return instance!!
         }
 
-        fun getAppContext(): Context{
+        internal fun getAppContext(): Context{
             return context
         }
     }
